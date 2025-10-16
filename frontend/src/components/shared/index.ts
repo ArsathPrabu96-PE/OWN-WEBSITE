@@ -1,0 +1,9 @@
+// Export all shared components for easier imports
+export { default as NexflareLogo } from './NexflareLogo';
+export { default as GeometricBackground } from './GeometricBackground';
+export { default as FloatingElements } from './FloatingElements';
+export { default as GradientOrbs } from './GradientOrbs';
+export { default as ServiceIcon } from './ServiceIcon';
+export { default as TechIcon } from './TechIcon';
+export { default as ProjectImage } from './ProjectImage';
+export { default as Button } from './Button';
