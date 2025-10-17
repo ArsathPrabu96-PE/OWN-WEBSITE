@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter, Poppins } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "./providers/theme-provider";
@@ -17,6 +17,7 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'),
   title: "NEXFLARE TECH - AI-Powered Software & Automation Solutions",
   description: "We build intelligent, scalable solutions for your business. Full Stack Web & Mobile App Development, AI-Powered Automation Tools, Business Chatbots & Analytics Systems, Cloud-Based SaaS Platforms.",
   keywords: "AI automation, full stack development, chatbots, SaaS platforms, mobile app development, web development, cloud solutions, business automation",
@@ -46,8 +47,13 @@ export const metadata: Metadata = {
     description: "We build intelligent, scalable solutions for your business.",
     images: ["/og-image.jpg"],
   },
-  viewport: "width=device-width, initial-scale=1, maximum-scale=1",
-  themeColor: "#00FFFF",
+};
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1,
+  themeColor: '#00FFFF',
 };
 
 export default function RootLayout({
@@ -65,7 +71,7 @@ export default function RootLayout({
       </head>
       <body className={`${inter.variable} ${poppins.variable} font-inter bg-dark text-white antialiased`}>
         <ThemeProvider attribute="data-theme" defaultTheme="dark" enableSystem={false}>
-          <div className="min-h-screen bg-hero-gradient bg-cyber-grid">
+          <div className="min-h-screen bg-hero-with-grid bg-hero-grid">
             {children}
           </div>
           <Toaster

@@ -32,12 +32,22 @@ const config: Config = {
       fontFamily: {
         'inter': ['Inter', 'sans-serif'],
         'poppins': ['Poppins', 'sans-serif'],
+        'orbitron': ['Orbitron', 'monospace'],
+        'space': ['Space Grotesk', 'sans-serif'],
+        'mono': ['JetBrains Mono', 'monospace'],
+        'display': ['Orbitron', 'Space Grotesk', 'sans-serif'],
+        'elegant': ['Space Grotesk', 'Inter', 'sans-serif'],
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic": "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
         "cyber-grid": "linear-gradient(rgba(0,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0,255,255,0.03) 1px, transparent 1px)",
         "hero-gradient": "linear-gradient(135deg, #0D1117 0%, #161B22 50%, #0D1117 100%)",
+        "hero-with-grid": "linear-gradient(135deg, #0D1117 0%, #161B22 50%, #0D1117 100%), linear-gradient(rgba(0,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0,255,255,0.03) 1px, transparent 1px)",
+      },
+      backgroundSize: {
+        'hero-grid': 'cover, 50px 50px, 50px 50px',
+        'grid': '50px 50px',
       },
       boxShadow: {
         'neon': '0 0 20px rgba(0, 255, 255, 0.5)',
@@ -79,9 +89,6 @@ const config: Config = {
           '0%': { transform: 'scale(0.9)', opacity: '0' },
           '100%': { transform: 'scale(1)', opacity: '1' },
         },
-      },
-      backgroundSize: {
-        'grid': '50px 50px',
       },
     },
   },

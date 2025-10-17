@@ -18,6 +18,9 @@ import ProjectImage from '../shared/ProjectImage';
 import GeometricBackground from '../shared/GeometricBackground';
 import FloatingElements from '../shared/FloatingElements';
 import TechIcon from '../shared/TechIcon';
+import CyberGrid from '../shared/CyberGrid';
+import AnimatedBackground from '../shared/AnimatedBackground';
+import ParticleField from '../shared/ParticleField';
 import { useProjects } from '../../hooks/useProjects';
 
 const Projects = () => {
@@ -82,6 +85,9 @@ const Projects = () => {
       {/* Background Graphics */}
       <GeometricBackground variant="grid" className="absolute inset-0 text-blue-400" />
       <FloatingElements variant="particles" count={12} className="absolute inset-0" />
+      <CyberGrid intensity="medium" className="absolute inset-0" />
+      <AnimatedBackground variant="circuit" intensity="low" className="absolute inset-0" />
+      <ParticleField count={40} variant="lines" className="absolute inset-0" />
       
       <div className="container-max relative z-10">
         {/* Header */}
@@ -91,7 +97,7 @@ const Projects = () => {
           transition={{ duration: 0.8 }}
           className="text-center mb-12"
         >
-          <h2 className="heading-secondary gradient-text mb-6">
+          <h2 className="heading-secondary gradient-text mb-6 font-display text-glow">
             Delivered Projects
           </h2>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
@@ -183,10 +189,10 @@ const Projects = () => {
               <div className="p-6">
                 <div className="flex items-start justify-between mb-4">
                   <div>
-                    <h3 className="text-xl font-bold text-white group-hover:text-cyan-neon transition-colors duration-300 mb-1">
+                    <h3 className="text-xl font-bold text-white group-hover:text-gradient-cyber transition-all duration-300 mb-1 font-elegant text-glow">
                       {project.title}
                     </h3>
-                    <p className="text-cyan-neon font-medium text-sm">
+                    <p className="text-cyan-neon font-medium text-sm font-tech tracking-wider">
                       {project.category}
                     </p>
                   </div>
@@ -237,7 +243,7 @@ const Projects = () => {
                 {/* Metrics */}
                 {project.metrics && (
                   <div className="space-y-2 mb-6">
-                    <h4 className="text-sm font-semibold text-white">Project Impact:</h4>
+                    <h4 className="text-sm font-semibold text-white text-glow">Project Impact:</h4>
                     <ul className="grid grid-cols-1 gap-1">
                       {project.metrics.performanceImprovement && (
                         <li className="flex items-center text-xs text-gray-400">
@@ -290,7 +296,7 @@ const Projects = () => {
               Ready to Join Our Success Stories?
             </h3>
             <p className="text-gray-300 mb-6">
-              Join our portfolio of 5 successful project deliveries. Let's bring your ideas to life 
+              Join our portfolio of 5 successful project deliveries. Let&apos;s bring your ideas to life 
               with our proven expertise in AI, full-stack development, and cutting-edge technologies.
             </p>
             <Button

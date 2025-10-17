@@ -18,6 +18,9 @@ import {
   ExternalLink
 } from 'lucide-react';
 import Button from '../shared/Button';
+import CyberGrid from '../shared/CyberGrid';
+import HolographicEffect from '../shared/HolographicEffect';
+import EnergyField from '../shared/EnergyField';
 
 const Founder = () => {
   const ref = useRef(null);
@@ -81,8 +84,13 @@ const Founder = () => {
   };
 
   return (
-    <section id="founder" className="section-padding bg-darker/50" ref={ref}>
-      <div className="container-max">
+    <section id="founder" className="section-padding bg-darker/50 relative" ref={ref}>
+      {/* Background Graphics */}
+      <CyberGrid intensity="high" className="absolute inset-0" />
+      <HolographicEffect variant="pulse" intensity="medium" className="absolute inset-0" />
+      <EnergyField variant="lightning" intensity="low" className="absolute inset-0" />
+      
+      <div className="container-max relative z-10">
         {/* Header */}
         <motion.div 
           initial={{ opacity: 0, y: 30 }}
@@ -90,7 +98,7 @@ const Founder = () => {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h2 className="heading-secondary gradient-text mb-6">
+          <h2 className="heading-secondary gradient-text mb-6 font-display text-glow">
             Meet the Founder
           </h2>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
@@ -118,7 +126,7 @@ const Founder = () => {
               </div>
 
               {/* Basic Info */}
-              <h3 className="text-2xl font-bold text-white mb-2">Arsath Prabu R</h3>
+              <h3 className="text-2xl font-bold text-white mb-2 text-glow">Arsath Prabu R</h3>
               <p className="text-cyan-neon font-medium mb-4">Founder & Lead Developer</p>
               
               {/* Contact Info */}
@@ -181,11 +189,11 @@ const Founder = () => {
 
             {/* About Section */}
             <div className="card-glass p-6">
-              <h4 className="text-xl font-bold text-white mb-4">About Me</h4>
+              <h4 className="text-xl font-bold text-white mb-4 text-glow">About Me</h4>
               <p className="text-gray-300 leading-relaxed text-sm">
-                I'm a passionate Full Stack Developer and AI Specialist with over 2 years of experience 
+                I&apos;m a passionate Full Stack Developer and AI Specialist with over 2 years of experience 
                 in creating innovative digital solutions. My journey began with a fascination for 
-                technology's potential to solve real-world problems, leading me to master both 
+                technology&apos;s potential to solve real-world problems, leading me to master both 
                 traditional web development and cutting-edge AI technologies.
               </p>
               <br />
@@ -205,7 +213,7 @@ const Founder = () => {
           >
             {/* Skills Section */}
             <div className="card-glass p-6">
-              <h4 className="text-xl font-bold text-white mb-6">Technical Skills</h4>
+              <h4 className="text-xl font-bold text-white mb-6 text-glow">Technical Skills</h4>
               <div className="space-y-4">
                 {skills.map((skill, index) => {
                   const IconComponent = skill.icon;
@@ -270,10 +278,10 @@ const Founder = () => {
             {/* CTA Section */}
             <div className="card-glass p-6 text-center">
               <h4 className="text-lg font-bold text-white mb-3">
-                Let's Work Together
+                Let&apos;s Work Together
               </h4>
               <p className="text-gray-300 text-sm mb-4">
-                Ready to turn your ideas into reality? Let's discuss your project 
+                Ready to turn your ideas into reality? Let&apos;s discuss your project 
                 and explore how we can create something amazing together.
               </p>
               <div className="flex flex-col sm:flex-row gap-3">
@@ -289,7 +297,7 @@ const Founder = () => {
                   variant="secondary"
                   size="sm"
                   className="flex-1"
-                  onClick={() => window.open('mailto:arsath@nexflaretech.com', '_blank')}
+                  onClick={() => window.open('mailto:arsathprabu96@gmail.com', '_blank')}
                 >
                   <Mail className="w-4 h-4 mr-2" />
                   Email Me

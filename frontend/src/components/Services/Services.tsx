@@ -2,6 +2,9 @@
 import React, { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { ServiceIcon, GeometricBackground, FloatingElements } from '../shared';
+import EnergyField from '../shared/EnergyField';
+import HolographicEffect from '../shared/HolographicEffect';
+import ParticleField from '../shared/ParticleField';
 import { 
   Code, 
   Brain, 
@@ -86,6 +89,9 @@ const Services = () => {
       {/* Background Graphics */}
       <GeometricBackground variant="lines" className="absolute inset-0 text-red-400" />
       <FloatingElements variant="tech" count={8} className="absolute inset-0" />
+      <EnergyField variant="plasma" intensity="low" className="absolute inset-0" />
+      <HolographicEffect variant="glitch" intensity="low" className="absolute inset-0" />
+      <ParticleField count={25} variant="stars" className="absolute inset-0" />
       
       <div className="container-max relative z-10">
         {/* Header */}
@@ -95,7 +101,7 @@ const Services = () => {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h2 className="heading-secondary gradient-text mb-6">
+          <h2 className="heading-secondary gradient-text mb-6 font-display text-glow">
             Our Services
           </h2>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
@@ -135,7 +141,7 @@ const Services = () => {
               </div>
 
               {/* Content */}
-              <h3 className="text-xl font-bold text-white mb-4 group-hover:text-cyan-neon transition-colors duration-300">
+              <h3 className="text-xl font-bold text-white mb-4 group-hover:text-gradient-cyber transition-all duration-300 font-elegant text-glow">
                 {service.title}
               </h3>
               
@@ -167,11 +173,11 @@ const Services = () => {
           className="text-center mt-16"
         >
           <div className="card-glass p-8 max-w-2xl mx-auto">
-            <h3 className="text-2xl font-bold text-white mb-4">
+            <h3 className="text-2xl font-bold text-white mb-4 text-glow">
               Ready to Transform Your Business?
             </h3>
             <p className="text-gray-300 mb-6">
-              Let's discuss how our AI-powered solutions can accelerate your digital transformation 
+              Let&apos;s discuss how our AI-powered solutions can accelerate your digital transformation 
               and drive measurable results.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">

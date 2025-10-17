@@ -67,9 +67,9 @@ const Footer = () => {
   ];
 
   const contactInfo = [
-    { icon: Mail, text: "contact@nexflaretech.com", href: "mailto:contact@nexflaretech.com" },
-    { icon: Phone, text: "+91 9876543210", href: "tel:+919876543210" },
-    { icon: MapPin, text: "Chennai, Tamil Nadu, India", href: "#" }
+    { icon: Mail, text: "arsathprabu96@gmail.com", href: "mailto:arsathprabu96@gmail.com" },
+    { icon: Phone, text: "+91 9500179062", href: "tel:+919500179062" },
+    { icon: MapPin, text: "Tiruchirapalli, Tamil Nadu, India", href: "#" }
   ];
 
   return (
@@ -93,7 +93,7 @@ const Footer = () => {
                     <Sparkles className="w-6 h-6 text-dark" />
                   </div>
                   <div>
-                    <h3 className="text-xl font-bold text-white">
+                    <h3 className="text-xl font-bold text-white text-glow">
                       NEXFLARE <span className="text-cyan-neon">TECH</span>
                     </h3>
                     <p className="text-xs text-gray-400">AI-Powered Solutions</p>
@@ -109,7 +109,7 @@ const Footer = () => {
                 {/* Company Motto */}
                 <div className="mb-6">
                   <p className="text-cyan-neon font-medium text-lg">
-                    "Innovate. Automate. Accelerate."
+                    &quot;Innovate. Automate. Accelerate.&quot;
                   </p>
                 </div>
 
@@ -141,7 +141,7 @@ const Footer = () => {
                 transition={{ duration: 0.6, delay: 0.1 }}
                 viewport={{ once: true }}
               >
-                <h4 className="text-white font-semibold mb-4">Services</h4>
+                <h4 className="text-white font-semibold mb-4 text-glow">Services</h4>
                 <ul className="space-y-2">
                   {footerLinks.services.map((link, index) => (
                     <li key={index}>
@@ -163,7 +163,7 @@ const Footer = () => {
                 transition={{ duration: 0.6, delay: 0.2 }}
                 viewport={{ once: true }}
               >
-                <h4 className="text-white font-semibold mb-4">Company</h4>
+                <h4 className="text-white font-semibold mb-4 text-glow">Company</h4>
                 <ul className="space-y-2">
                   {footerLinks.company.map((link, index) => (
                     <li key={index}>
@@ -185,7 +185,7 @@ const Footer = () => {
                 transition={{ duration: 0.6, delay: 0.3 }}
                 viewport={{ once: true }}
               >
-                <h4 className="text-white font-semibold mb-4">Resources</h4>
+                <h4 className="text-white font-semibold mb-4 text-glow">Resources</h4>
                 <ul className="space-y-2">
                   {footerLinks.resources.map((link, index) => (
                     <li key={index}>

@@ -19,7 +19,8 @@ export class EmailService {
   }
 
   async sendContactNotification(contactData: any): Promise<void> {
-    const { name, email, company, phone, service, budget, timeline, message } = contactData;
+    const { name, email, company, phone, service, budget, timeline, message } =
+      contactData;
 
     const htmlContent = `
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; background-color: #f8f9fa;">
@@ -62,7 +63,7 @@ export class EmailService {
 
     const mailOptions = {
       from: this.configService.get<string>('FROM_EMAIL'),
-      to: 'contact@nexflaretech.com',
+      to: 'arsathprabu96@gmail.com',
       subject: `🚀 New Contact Form Submission from ${name}`,
       html: htmlContent,
     };
@@ -110,11 +111,11 @@ export class EmailService {
           <div style="text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid rgba(0, 255, 255, 0.2);">
             <p style="color: #888; margin-bottom: 10px;">Need immediate assistance?</p>
             <p>
-              <a href="mailto:contact@nexflaretech.com" style="color: #00FFFF; text-decoration: none;">
-                📧 contact@nexflaretech.com
+              <a href="mailto:arsathprabu96@gmail.com" style="color: #00FFFF; text-decoration: none;">
+                📧 arsathprabu96@gmail.com
               </a> | 
-              <a href="tel:+919876543210" style="color: #00FFFF; text-decoration: none;">
-                📞 +91 9876543210
+              <a href="tel:+919500179062" style="color: #00FFFF; text-decoration: none;">
+                📞 +91 9500179062
               </a>
             </p>
             <p style="color: #00FFFF; font-weight: bold; margin-top: 15px;">
@@ -128,7 +129,8 @@ export class EmailService {
     const mailOptions = {
       from: this.configService.get<string>('FROM_EMAIL'),
       to: email,
-      subject: '🚀 Thank you for contacting NEXFLARE TECH - We\'ll be in touch soon!',
+      subject:
+        "🚀 Thank you for contacting NEXFLARE TECH - We'll be in touch soon!",
       html: htmlContent,
     };
 

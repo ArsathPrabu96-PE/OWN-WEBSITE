@@ -1,0 +1,39 @@
+{
+  "name": "nexflare-tech-website",
+  "version": "2.0.0",
+  "description": "NEXFLARE TECH - AI-Powered Software & Automation Solutions Website",
+  "author": "Arsath Prabu R <arsathprabu96@gmail.com>",
+  "license": "PROPRIETARY",
+  "homepage": "https://nexflare-tech.vercel.app",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ArsathPrabu96-PE/OWN-WEBSITE.git"
+  },
+  "keywords": [
+    "nexflare",
+    "ai-software",
+    "automation",
+    "full-stack",
+    "nextjs",
+    "nestjs",
+    "mongodb",
+    "typescript"
+  ],
+  "scripts": {
+    "start": "npm run start:backend & npm run start:frontend",
+    "start:backend": "cd backend && npm run start:dev",
+    "start:frontend": "cd frontend && npm run dev",
+    "build": "npm run build:backend && npm run build:frontend",
+    "build:backend": "cd backend && npm run build",
+    "build:frontend": "cd frontend && npm run build",
+    "test": "npm run test:backend && npm run test:frontend",
+    "test:backend": "cd backend && npm run test",
+    "test:frontend": "cd frontend && npm run test",
+    "cypress": "cypress open",
+    "cypress:run": "cypress run"
+  },
+  "devDependencies": {
+    "cypress": "^15.4.0",
+    "typescript": "^5.9.3"
+  }
+}

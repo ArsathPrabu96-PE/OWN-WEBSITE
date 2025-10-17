@@ -1,4 +1,4 @@
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000';
 
 interface ContactFormData {
   name: string;
@@ -18,6 +18,39 @@ interface ApiResponse<T = any> {
 }
 
 export class ApiService {
+  // Health check method
+  static async healthCheck(): Promise<{ status: string; backend: string; timestamp: string }> {
+    try {
+      const response = await fetch(`${API_BASE_URL}/`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      
+      if (response.ok) {
+        return {
+          status: 'healthy',
+          backend: API_BASE_URL,
+          timestamp: new Date().toISOString()
+        };
+      } else {
+        return {
+          status: `error-${response.status}`,
+          backend: API_BASE_URL,
+          timestamp: new Date().toISOString()
+        };
+      }
+    } catch (error) {
+      console.error('❌ Backend health check failed:', error);
+      return {
+        status: 'unreachable',
+        backend: API_BASE_URL,
+        timestamp: new Date().toISOString()
+      };
+    }
+  }
+
   private static async makeRequest<T>(
     endpoint: string,
     options: RequestInit = {}
@@ -39,8 +72,24 @@ export class ApiService {
 
       return data;
     } catch (error) {
-      console.error('API Error:', error);
-      throw error;
+      // Check if it's a network error (backend not running)
+      if (error instanceof TypeError && error.message.includes('fetch')) {
+        console.warn('⚠️ Backend not available, using fallback data');
+        
+        // Return a structured error response instead of throwing
+        return {
+          success: false,
+          message: 'Backend server is not running. Using fallback data.',
+          data: undefined
+        };
+      }
+      
+      // Return structured error instead of throwing
+      return {
+        success: false,
+        message: error instanceof Error ? error.message : 'Unknown error occurred',
+        data: undefined
+      };
     }
   }
 

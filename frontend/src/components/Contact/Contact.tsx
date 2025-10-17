@@ -17,6 +17,9 @@ import {
   CheckCircle
 } from 'lucide-react';
 import Button from '../shared/Button';
+import AnimatedBackground from '../shared/AnimatedBackground';
+import ParticleField from '../shared/ParticleField';
+import CyberGrid from '../shared/CyberGrid';
 import { ApiService, type ContactFormData as ApiContactFormData } from '../../lib/api';
 
 // Form validation schema
@@ -73,7 +76,7 @@ const Contact = () => {
     } catch (error) {
       // If backend is not available, show a fallback message
       console.error('Contact form error:', error);
-      toast.error('Backend is currently unavailable. Please contact us directly at contact@nexflaretech.com');
+      toast.error('Backend is currently unavailable. Please contact us directly at arsathprabu96@gmail.com');
     } finally {
       setIsSubmitting(false);
     }
@@ -83,21 +86,21 @@ const Contact = () => {
     {
       icon: Mail,
       title: "Email Us",
-      details: "contact@nexflaretech.com",
+      details: "arsathprabu96@gmail.com",
       description: "Get in touch for project inquiries",
-      action: "mailto:contact@nexflaretech.com"
+      action: "mailto:arsathprabu96@gmail.com"
     },
     {
       icon: Phone,
       title: "Call Us",
-      details: "+91 9876543210",
+      details: "+91 9500179062",
       description: "Speak directly with our team",
-      action: "tel:+919876543210"
+      action: "tel:+919500179062"
     },
     {
       icon: MapPin,
       title: "Visit Us",
-      details: "Chennai, Tamil Nadu, India",
+      details: "Tiruchirapalli, Tamil Nadu, India",
       description: "Schedule a meeting at our office",
       action: "#"
     },
@@ -136,8 +139,13 @@ const Contact = () => {
   ];
 
   return (
-    <section id="contact" className="section-padding" ref={ref}>
-      <div className="container-max">
+    <section id="contact" className="section-padding relative" ref={ref}>
+      {/* Background Graphics */}
+      <AnimatedBackground variant="particles" intensity="medium" className="absolute inset-0" />
+      <ParticleField count={45} variant="dots" className="absolute inset-0" />
+      <CyberGrid intensity="low" animated className="absolute inset-0" />
+      
+      <div className="container-max relative z-10">
         {/* Header */}
         <motion.div 
           initial={{ opacity: 0, y: 30 }}
@@ -145,11 +153,11 @@ const Contact = () => {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h2 className="heading-secondary gradient-text mb-6">
+          <h2 className="heading-secondary gradient-text mb-6 font-display text-glow">
             Get In Touch
           </h2>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-            Ready to transform your business with AI-powered solutions? Let's discuss your project 
+            Ready to transform your business with AI-powered solutions? Let&apos;s discuss your project 
             and explore how NEXFLARE TECH can help you achieve your goals.
           </p>
         </motion.div>
@@ -163,12 +171,12 @@ const Contact = () => {
             className="space-y-8"
           >
             <div>
-              <h3 className="text-2xl font-bold text-white mb-6">
-                Let's Start a Conversation
+              <h3 className="text-2xl font-bold text-white mb-6 text-glow">
+                Let&apos;s Start a Conversation
               </h3>
               <p className="text-gray-300 leading-relaxed mb-8">
                 Whether you have a specific project in mind or just want to explore possibilities, 
-                we're here to help. Reach out to us through any of the channels below.
+                we&apos;re here to help. Reach out to us through any of the channels below.
               </p>
             </div>
 
@@ -206,17 +214,17 @@ const Contact = () => {
 
             {/* Quick Actions */}
             <div className="card-glass p-6">
-              <h4 className="text-white font-semibold mb-4">Quick Actions</h4>
+              <h4 className="text-white font-semibold mb-4 text-glow">Quick Actions</h4>
               <div className="space-y-3">
                 <button 
-                  onClick={() => window.open('https://calendly.com/nexflaretech', '_blank')}
+                  onClick={() => window.open('mailto:arsathprabu96@gmail.com?subject=Schedule a Call Request', '_blank')}
                   className="w-full flex items-center gap-3 p-3 bg-cyan-neon/10 rounded-lg text-cyan-neon hover:bg-cyan-neon/20 transition-colors duration-300"
                 >
                   <Calendar className="w-5 h-5" />
                   <span className="font-medium">Schedule a Call</span>
                 </button>
                 <button 
-                  onClick={() => window.open('https://wa.me/919876543210', '_blank')}
+                  onClick={() => window.open('https://wa.me/919500179062', '_blank')}
                   className="w-full flex items-center gap-3 p-3 bg-green-500/10 rounded-lg text-green-400 hover:bg-green-500/20 transition-colors duration-300"
                 >
                   <MessageCircle className="w-5 h-5" />
@@ -234,7 +242,7 @@ const Contact = () => {
             className="lg:col-span-2"
           >
             <div className="card-glass p-8">
-              <h3 className="text-2xl font-bold text-white mb-6">
+              <h3 className="text-2xl font-bold text-white mb-6 text-glow">
                 Tell Us About Your Project
               </h3>
               

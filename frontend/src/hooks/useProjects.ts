@@ -38,39 +38,43 @@ export function useProjects(options: UseProjectsOptions = {}) {
   const fetchProjects = async (filters?: { category?: string; featured?: boolean }) => {
     setLoading(true);
     setError(null);
-    try {
-      const response = await ApiService.getProjects(filters);
-      if (response.success && response.data) {
-        setProjects(response.data);
-      } else {
-        throw new Error(response.message || 'Failed to fetch projects');
+    
+    const response = await ApiService.getProjects(filters);
+    
+    if (response.success && response.data) {
+      setProjects(response.data);
+    } else {
+      // Fallback to static data when API is not available
+      const staticProjects = getStaticProjects();
+      let filteredProjects = staticProjects;
+      
+      if (filters?.category) {
+        filteredProjects = staticProjects.filter(p => p.category === filters.category);
       }
-    } catch (err) {
-      setError(err instanceof Error ? err.message : 'An error occurred');
-      // Fallback to static data if API is not available
-      setProjects(getStaticProjects());
-    } finally {
-      setLoading(false);
+      if (filters?.featured) {
+        filteredProjects = staticProjects.filter(p => p.featured === true);
+      }
+      
+      setProjects(filteredProjects);
     }
+    
+    setLoading(false);
   };
 
   const fetchFeaturedProjects = async () => {
     setLoading(true);
     setError(null);
-    try {
-      const response = await ApiService.getFeaturedProjects();
-      if (response.success && response.data) {
-        setProjects(response.data);
-      } else {
-        throw new Error(response.message || 'Failed to fetch featured projects');
-      }
-    } catch (err) {
-      setError(err instanceof Error ? err.message : 'An error occurred');
+    
+    const response = await ApiService.getFeaturedProjects();
+    
+    if (response.success && response.data) {
+      setProjects(response.data);
+    } else {
       // Fallback to static featured projects
       setProjects(getStaticProjects().filter(p => p.featured));
-    } finally {
-      setLoading(false);
     }
+    
+    setLoading(false);
   };
 
   const fetchProjectsByCategory = async (category: string) => {

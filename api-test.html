@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>API Test</title>
+</head>
+<body>
+    <h1>API Connection Test</h1>
+    <div id="status">Testing...</div>
+    <div id="data"></div>
+
+    <script>
+        async function testAPI() {
+            const statusDiv = document.getElementById('status');
+            const dataDiv = document.getElementById('data');
+            
+            try {
+                console.log('Testing API connection...');
+                const response = await fetch('http://localhost:3000/projects');
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    statusDiv.innerHTML = '✅ API Working! Status: ' + response.status;
+                    dataDiv.innerHTML = `<p>Found ${data.count} projects</p>`;
+                    console.log('✅ API test successful');
+                } else {
+                    statusDiv.innerHTML = '❌ API Error: ' + response.status;
+                }
+            } catch (error) {
+                statusDiv.innerHTML = '❌ Connection Error: ' + error.message;
+                console.error('API test failed:', error);
+            }
+        }
+        
+        testAPI();
+    </script>
+</body>
+</html>

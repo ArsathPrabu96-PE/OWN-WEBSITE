@@ -2,7 +2,10 @@
 import React from 'react';
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
-import { Target, Eye, User, Sparkles, Brain, Rocket } from 'lucide-react';
+import { Target, Eye, User, Sparkles, Brain, Rocket, FolderCheck, Star, Headphones, Lightbulb } from 'lucide-react';
+import EnergyField from '../shared/EnergyField';
+import ParticleField from '../shared/ParticleField';
+import HolographicEffect from '../shared/HolographicEffect';
 
 const About = () => {
   const ref = useRef(null);
@@ -28,15 +31,20 @@ const About = () => {
   };
 
   const stats = [
-    { number: "5", label: "Projects Delivered" },
-    { number: "98%", label: "Client Satisfaction" },
-    { number: "24/7", label: "Support Available" },
-    { number: "100%", label: "Innovation Focus" },
+    { number: "6", label: "Projects Delivered", icon: FolderCheck, color: "from-emerald-500 to-teal-600" },
+    { number: "98%", label: "Client Satisfaction", icon: Star, color: "from-amber-500 to-orange-600" },
+    { number: "24/7", label: "Support Available", icon: Headphones, color: "from-purple-500 to-pink-600" },
+    { number: "100%", label: "Innovation Focus", icon: Lightbulb, color: "from-cyan-500 to-blue-600" },
   ];
 
   return (
-    <section id="about" className="section-padding bg-darker/50" ref={ref}>
-      <div className="container-max">
+    <section id="about" className="section-padding bg-darker/50 relative" ref={ref}>
+      {/* Background Graphics */}
+      <EnergyField variant="neural" intensity="medium" className="absolute inset-0" />
+      <ParticleField count={30} variant="dots" className="absolute inset-0" />
+      <HolographicEffect variant="waves" intensity="low" className="absolute inset-0" />
+      
+      <div className="container-max relative z-10">
         {/* Header */}
         <motion.div 
           initial={{ opacity: 0, y: 50 }}
@@ -44,7 +52,7 @@ const About = () => {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h2 className="heading-secondary gradient-text mb-6">
+          <h2 className="heading-secondary gradient-text mb-6 font-display text-glow">
             About NEXFLARE TECH
           </h2>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
@@ -78,7 +86,7 @@ const About = () => {
               <User className="w-8 h-8 text-dark" />
             </div>
             <h3 className="heading-tertiary text-cyan-neon mb-2 text-center">Founder</h3>
-            <h4 className="text-2xl font-bold text-white text-center mb-2">Arsath Prabu</h4>
+            <h4 className="text-2xl font-bold text-white text-center mb-2 text-glow">Arsath Prabu</h4>
             <p className="text-cyan-neon font-medium text-center mb-4">
               Full Stack & AI Developer
             </p>
@@ -144,22 +152,28 @@ const About = () => {
           transition={{ duration: 0.8, delay: 0.8 }}
           className="grid grid-cols-2 md:grid-cols-4 gap-6"
         >
-          {stats.map((stat, index) => (
-            <motion.div
-              key={index}
-              initial={{ scale: 0.8, opacity: 0 }}
-              animate={isInView ? { scale: 1, opacity: 1 } : { scale: 0.8, opacity: 0 }}
-              transition={{ duration: 0.5, delay: 1 + index * 0.1 }}
-              className="text-center p-6 card-glass hover-glow"
-            >
-              <div className="text-3xl md:text-4xl font-bold gradient-text mb-2">
-                {stat.number}
-              </div>
-              <div className="text-gray-400 text-sm font-medium">
-                {stat.label}
-              </div>
-            </motion.div>
-          ))}
+          {stats.map((stat, index) => {
+            const IconComponent = stat.icon;
+            return (
+              <motion.div
+                key={index}
+                initial={{ scale: 0.8, opacity: 0 }}
+                animate={isInView ? { scale: 1, opacity: 1 } : { scale: 0.8, opacity: 0 }}
+                transition={{ duration: 0.5, delay: 1 + index * 0.1 }}
+                className="text-center p-6 card-glass hover-glow group"
+              >
+                <div className={`flex items-center justify-center w-12 h-12 bg-gradient-to-br ${stat.color} rounded-full mb-4 mx-auto group-hover:scale-110 transition-transform duration-300`}>
+                  <IconComponent className="w-6 h-6 text-white" />
+                </div>
+                <div className="text-3xl md:text-4xl font-bold gradient-text mb-2">
+                  {stat.number}
+                </div>
+                <div className="text-gray-400 text-sm font-medium">
+                  {stat.label}
+                </div>
+              </motion.div>
+            );
+          })}
         </motion.div>
       </div>
     </section>

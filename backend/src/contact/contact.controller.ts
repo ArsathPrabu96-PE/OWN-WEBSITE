@@ -38,6 +38,7 @@ export class ContactController {
         data: contact,
       };
     } catch (error) {
+      console.error('Contact creation error:', error);
       throw new HttpException(
         'Failed to submit contact form',
         HttpStatus.INTERNAL_SERVER_ERROR,
@@ -59,6 +60,7 @@ export class ContactController {
         data: contacts,
       };
     } catch (error) {
+      console.error('Contact retrieval error:', error);
       throw new HttpException(
         'Failed to retrieve contacts',
         HttpStatus.INTERNAL_SERVER_ERROR,
@@ -80,6 +82,7 @@ export class ContactController {
         data: stats,
       };
     } catch (error) {
+      console.error('Contact stats error:', error);
       throw new HttpException(
         'Failed to retrieve statistics',
         HttpStatus.INTERNAL_SERVER_ERROR,
@@ -126,10 +129,7 @@ export class ContactController {
     status: 200,
     description: 'Contact status updated successfully',
   })
-  async updateStatus(
-    @Param('id') id: string,
-    @Body('status') status: string,
-  ) {
+  async updateStatus(@Param('id') id: string, @Body('status') status: string) {
     try {
       const contact = await this.contactService.updateStatus(id, status);
       if (!contact) {

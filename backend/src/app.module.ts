@@ -10,10 +10,17 @@ import { ProjectsModule } from './projects/projects.module';
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
+      envFilePath: '.env',
     }),
     MongooseModule.forRootAsync({
       useFactory: () => ({
-        uri: process.env.MONGODB_URI || 'mongodb://localhost:27017/nexflaretech',
+        uri: process.env.MONGODB_URI,
+        retryWrites: true,
+        w: 'majority',
+        connectTimeoutMS: 10000,
+        socketTimeoutMS: 45000,
+        serverSelectionTimeoutMS: 5000,
+        maxPoolSize: 10,
       }),
     }),
     ContactModule,

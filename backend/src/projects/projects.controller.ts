@@ -9,7 +9,6 @@ import {
   Query,
   HttpStatus,
   HttpCode,
-  UseFilters,
   BadRequestException,
 } from '@nestjs/common';
 import { ProjectsService } from './projects.service';
@@ -42,11 +41,11 @@ export class ProjectsController {
   ) {
     try {
       const filters: any = {};
-      
+
       if (category) {
         filters.category = category;
       }
-      
+
       if (featured !== undefined) {
         filters.featured = featured === 'true';
       }
@@ -95,7 +94,8 @@ export class ProjectsController {
   @Get('category/:category')
   async getByCategory(@Param('category') category: string) {
     try {
-      const projects = await this.projectsService.getProjectsByCategory(category);
+      const projects =
+        await this.projectsService.getProjectsByCategory(category);
       return {
         success: true,
         message: `Projects in ${category} category retrieved successfully`,
@@ -103,7 +103,9 @@ export class ProjectsController {
         count: projects.length,
       };
     } catch (error) {
-      throw new BadRequestException(`Failed to retrieve projects for category: ${category}`);
+      throw new BadRequestException(
+        `Failed to retrieve projects for category: ${category}`,
+      );
     }
   }
 
@@ -125,7 +127,10 @@ export class ProjectsController {
   }
 
   @Patch(':id')
-  async update(@Param('id') id: string, @Body() updateProjectDto: UpdateProjectDto) {
+  async update(
+    @Param('id') id: string,
+    @Body() updateProjectDto: UpdateProjectDto,
+  ) {
     try {
       const project = await this.projectsService.update(id, updateProjectDto);
       return {

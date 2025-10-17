@@ -7,6 +7,10 @@ import NexflareLogo from '../shared/NexflareLogo';
 import GeometricBackground from '../shared/GeometricBackground';
 import FloatingElements from '../shared/FloatingElements';
 import GradientOrbs from '../shared/GradientOrbs';
+import AnimatedBackground from '../shared/AnimatedBackground';
+import CyberGrid from '../shared/CyberGrid';
+import ParticleField from '../shared/ParticleField';
+import HolographicEffect from '../shared/HolographicEffect';
 import { ChevronDown, Sparkles } from 'lucide-react';
 
 const ParticleBackground = dynamic(() => import('./ParticleBackground'), {
@@ -41,6 +45,10 @@ const Hero = () => {
       <GeometricBackground variant="circles" className="absolute inset-0 text-teal-400" />
       <GradientOrbs count={5} className="absolute inset-0" />
       <FloatingElements variant="geometric" count={10} className="absolute inset-0" />
+      <AnimatedBackground variant="matrix" intensity="medium" className="absolute inset-0" />
+      <CyberGrid intensity="low" className="absolute inset-0" />
+      <ParticleField count={60} variant="mixed" className="absolute inset-0" />
+      <HolographicEffect variant="scanner" intensity="low" className="absolute inset-0" />
 
       {/* Main Content */}
       <div className="relative z-10 text-center px-4 max-w-6xl mx-auto">
@@ -61,9 +69,9 @@ const Hero = () => {
           transition={{ duration: 0.8, delay: 0.3 }}
           className="mb-6"
         >
-          <h1 className="heading-primary text-white font-poppins">
-            NEXFLARE{" "}
-            <span className="gradient-text animate-glow">
+          <h1 className="heading-primary text-white font-display text-glow-strong relative">
+            <span className="relative z-10">NEXFLARE{" "}</span>
+            <span className="text-gradient-cyber animate-glow font-orbitron relative z-10">
               TECH
             </span>
           </h1>
@@ -74,7 +82,7 @@ const Hero = () => {
           initial={{ opacity: 0, y: -30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
-          className="text-2xl md:text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight"
+          className="heading-secondary text-2xl md:text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight font-elegant text-shadow-elegant text-glow"
         >
           AI-Powered Software &{" "}
           <span className="relative">
@@ -92,7 +100,7 @@ const Hero = () => {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.9 }}
-          className="text-lg md:text-xl lg:text-2xl text-gray-300 mb-12 max-w-3xl mx-auto leading-relaxed"
+          className="text-lg md:text-xl lg:text-2xl text-gray-300 mb-12 max-w-3xl mx-auto leading-relaxed text-glow font-space-grotesk"
         >
           We build intelligent, scalable solutions for your business.{" "}
           <span className="text-cyan-neon font-semibold">

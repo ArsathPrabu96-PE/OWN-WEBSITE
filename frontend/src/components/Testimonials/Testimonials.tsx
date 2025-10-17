@@ -1,14 +1,12 @@
 "use client";
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef, useState, useEffect, useCallback } from 'react';
 import { motion, useInView, AnimatePresence } from 'framer-motion';
-import { Star, Quote, ChevronLeft, ChevronRight, Building2, User } from 'lucide-react';
+import { Star, Quote, ChevronLeft, ChevronRight, Building2, User, FolderCheck, Heart, Headphones, Lightbulb } from 'lucide-react';
+import AnimatedBackground from '../shared/AnimatedBackground';
+import EnergyField from '../shared/EnergyField';
+import ParticleField from '../shared/ParticleField';
 
-const Testimonials = () => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, amount: 0.2 });
-  const [currentIndex, setCurrentIndex] = useState(0);
-
-  const testimonials = [
+const TESTIMONIALS_DATA = [
     {
       id: 1,
       name: "Sarah Johnson",
@@ -64,27 +62,37 @@ const Testimonials = () => {
       project: "Smart TaskFlow SaaS",
       industry: "Project Management"
     }
-  ];
+];
 
-  const nextTestimonial = () => {
-    setCurrentIndex((prev) => (prev + 1) % testimonials.length);
-  };
+const Testimonials = () => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, amount: 0.2 });
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const nextTestimonial = useCallback(() => {
+    setCurrentIndex((prev) => (prev + 1) % TESTIMONIALS_DATA.length);
+  }, []);
 
   const prevTestimonial = () => {
-    setCurrentIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+    setCurrentIndex((prev) => (prev - 1 + TESTIMONIALS_DATA.length) % TESTIMONIALS_DATA.length);
   };
 
   // Auto-advance testimonials
   useEffect(() => {
     const interval = setInterval(nextTestimonial, 6000);
     return () => clearInterval(interval);
-  }, []);
+  }, [nextTestimonial]);
 
-  const currentTestimonial = testimonials[currentIndex];
+  const currentTestimonial = TESTIMONIALS_DATA[currentIndex];
 
   return (
-    <section id="testimonials" className="section-padding" ref={ref}>
-      <div className="container-max">
+    <section id="testimonials" className="section-padding relative" ref={ref}>
+      {/* Background Graphics */}
+      <AnimatedBackground variant="waves" intensity="low" className="absolute inset-0" />
+      <EnergyField variant="quantum" intensity="medium" className="absolute inset-0" />
+      <ParticleField count={35} variant="mixed" className="absolute inset-0" />
+      
+      <div className="container-max relative z-10">
         {/* Header */}
         <motion.div 
           initial={{ opacity: 0, y: 30 }}
@@ -92,12 +100,12 @@ const Testimonials = () => {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h2 className="heading-secondary gradient-text mb-6">
+          <h2 className="heading-secondary gradient-text mb-6 font-display text-glow">
             Client Testimonials
           </h2>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-            Don't just take our word for it. Here's what our clients say about 
-            working with NEXFLARE TECH and the results we've delivered.
+            Don&apos;t just take our word for it. Here&apos;s what our clients say about 
+            working with NEXFLARE TECH and the results we&apos;ve delivered.
           </p>
         </motion.div>
 
@@ -130,7 +138,7 @@ const Testimonials = () => {
 
                 {/* Testimonial Text */}
                 <blockquote className="text-lg md:text-xl text-gray-300 leading-relaxed mb-8 italic">
-                  "{currentTestimonial.text}"
+                  &quot;{currentTestimonial.text}&quot;
                 </blockquote>
 
                 {/* Client Info */}
@@ -145,7 +153,7 @@ const Testimonials = () => {
 
                   {/* Client Details */}
                   <div className="text-center md:text-left">
-                    <h4 className="text-xl font-bold text-white mb-1">
+                    <h4 className="text-xl font-bold text-white mb-1 text-glow">
                       {currentTestimonial.name}
                     </h4>
                     <p className="text-cyan-neon font-medium mb-1">
@@ -202,7 +210,7 @@ const Testimonials = () => {
           transition={{ duration: 0.6, delay: 0.4 }}
           className="flex justify-center gap-3 mb-16"
         >
-          {testimonials.map((_, index) => (
+          {TESTIMONIALS_DATA.map((_, index) => (
             <button
               key={index}
               onClick={() => setCurrentIndex(index)}
@@ -222,19 +230,31 @@ const Testimonials = () => {
           transition={{ duration: 0.8, delay: 0.6 }}
           className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center"
         >
-          <div className="card-glass p-6">
+          <div className="card-glass p-6 hover:bg-white/5 transition-all duration-300">
+            <div className="flex items-center justify-center w-12 h-12 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-full mb-4 mx-auto">
+              <Heart className="w-6 h-6 text-white" />
+            </div>
             <div className="text-2xl font-bold gradient-text mb-2">6</div>
             <div className="text-gray-400 text-sm">Happy Clients</div>
           </div>
-          <div className="card-glass p-6">
+          <div className="card-glass p-6 hover:bg-white/5 transition-all duration-300">
+            <div className="flex items-center justify-center w-12 h-12 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-full mb-4 mx-auto">
+              <FolderCheck className="w-6 h-6 text-white" />
+            </div>
             <div className="text-2xl font-bold gradient-text mb-2">6</div>
             <div className="text-gray-400 text-sm">Projects Delivered</div>
           </div>
-          <div className="card-glass p-6">
+          <div className="card-glass p-6 hover:bg-white/5 transition-all duration-300">
+            <div className="flex items-center justify-center w-12 h-12 bg-gradient-to-br from-amber-500 to-orange-600 rounded-full mb-4 mx-auto">
+              <Star className="w-6 h-6 text-white" />
+            </div>
             <div className="text-2xl font-bold gradient-text mb-2">98%</div>
             <div className="text-gray-400 text-sm">Client Satisfaction</div>
           </div>
-          <div className="card-glass p-6">
+          <div className="card-glass p-6 hover:bg-white/5 transition-all duration-300">
+            <div className="flex items-center justify-center w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-600 rounded-full mb-4 mx-auto">
+              <Headphones className="w-6 h-6 text-white" />
+            </div>
             <div className="text-2xl font-bold gradient-text mb-2">24/7</div>
             <div className="text-gray-400 text-sm">Support</div>
           </div>
